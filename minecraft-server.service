@@ -1,0 +1,13 @@
+[Unit]
+Description=Minecraft Server
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/usr/bin/docker run --rm -p 25565:25565 --name minecraft-server -e EULA=TRUE itzg/minecraft-server
+ExecStop=/usr/bin/docker stop minecraft-server
+Restart=always
+User=ec2-user
+
+[Install]
+WantedBy=multi-user.target
